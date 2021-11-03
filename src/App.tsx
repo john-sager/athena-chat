@@ -9,7 +9,7 @@ const App = () => {
   return (
     <Root>
       <h1>Chat</h1>
-      <Form>
+      <Form buttonText="Send">
         <FormField id="message" labelText="Message" inputAs={Textarea} />
       </Form>
     </Root>

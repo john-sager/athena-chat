@@ -6,4 +6,8 @@ describe("App", () => {
     render(<App />);
     screen.getByLabelText("Message");
   });
+  it("should render a submit button", () => {
+    render(<App />);
+    screen.getByRole("button", { name: "Send" });
+  });
 });
