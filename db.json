@@ -1,0 +1,15 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "message": "hi John",
+      "date": "2020-11-03",
+      "senderId": 1,
+      "recipientId": 2
+    }
+  ],
+  "users": [
+    { "id": 1, "username": "john" },
+    { "id": 2, "username": "otherguy" }
+  ]
+}

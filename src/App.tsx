@@ -5,6 +5,7 @@ import Textarea from "@athena/forge/Textarea";
 import FormField from "@athena/forge/FormField";
 import Button from "@athena/forge/Button";
 import Heading from "@athena/forge/Heading";
+import ListItem from "@athena/forge/ListItem";
 
 import "@athena/forge/dist/forge.css";
 
@@ -16,11 +17,12 @@ const App = () => {
     <Root>
       <Heading text="Chat" />
 
-      {messages.map((msg) => (
-        <p>{msg}</p>
+      {messages.map((msg, i) => (
+        <ListItem key={msg + "i"}>{msg}</ListItem>
       ))}
 
       <Form
+        style={{ marginTop: "12px" }}
         buttonText="Send"
         includeSubmitButton={false}
         onSubmit={(event) => {
