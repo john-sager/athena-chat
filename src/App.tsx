@@ -1,46 +1,39 @@
-import { useState } from "react";
-import Form from "@athena/forge/Form";
+import { useEffect, useState } from "react";
 import Root from "@athena/forge/Root";
-import Textarea from "@athena/forge/Textarea";
-import FormField from "@athena/forge/FormField";
-import Button from "@athena/forge/Button";
 import Heading from "@athena/forge/Heading";
 import ListItem from "@athena/forge/ListItem";
+import { getMessages, sendMessage } from "./api/messages";
+import { Message } from "./types";
+import MessageForm from "./MessageForm";
 
 import "@athena/forge/dist/forge.css";
 
 const App = () => {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    async function getInitialMessages() {
+      const _messages = await getMessages();
+      setMessages(_messages);
+    }
+
+    getInitialMessages();
+  }, []);
+
+  const handleSubmit = async (message: Message) => {
+    const sentMessage = await sendMessage(message);
+    setMessages([...messages, sentMessage]);
+  };
 
   return (
     <Root>
       <Heading text="Chat" />
 
       {messages.map((msg, i) => (
-        <ListItem key={msg + "i"}>{msg}</ListItem>
+        <ListItem key={msg.id}>{msg.message}</ListItem>
       ))}
 
-      <Form
-        style={{ marginTop: "12px" }}
-        buttonText="Send"
-        includeSubmitButton={false}
-        onSubmit={(event) => {
-          event.preventDefault();
-          setMessages([...messages, message]);
-          setMessage("");
-        }}
-      >
-        <FormField
-          id="message"
-          labelAlwaysAbove
-          labelText="Message"
-          inputAs={Textarea}
-          value={message}
-          onChange={(e) => setMessage(e.currentTarget.value)}
-        />
-        <Button type="submit" text="Send" disabled={!message} />
-      </Form>
+      <MessageForm onSubmit={handleSubmit} />
     </Root>
   );
 };

@@ -6,10 +6,30 @@
       "date": "2020-11-03",
       "senderId": 1,
       "recipientId": 2
+    },
+    {
+      "message": "ad",
+      "senderId": 1,
+      "recipientId": 2,
+      "date": "5/2/2022",
+      "id": 2
+    },
+    {
+      "message": "fds",
+      "senderId": 1,
+      "recipientId": 2,
+      "date": "5/2/2022",
+      "id": 3
     }
   ],
   "users": [
-    { "id": 1, "username": "john" },
-    { "id": 2, "username": "otherguy" }
+    {
+      "id": 1,
+      "username": "john"
+    },
+    {
+      "id": 2,
+      "username": "otherguy"
+    }
   ]
 }
